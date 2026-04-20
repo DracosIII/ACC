@@ -3,7 +3,6 @@
 
 > An accounting management web application developed as a final year project (TFE). It allows users to manage clients, quotes, invoices, and visualize data through a dashboard.
 
-**Live Demo:** **[tfe.acc.2026.stordeur-martin.be](https://tfe.acc.2026.stordeur-martin.be)**
 
 ---
 
@@ -21,8 +20,8 @@
 ## 🛠️ Tech Stack
 
 * **Frontend:** HTML, JavaScript, TailwindCSS
-* **Backend:** PHP
-* **Database:** MySQL / MariaDB
+* **Backend:** PHP / NodeJS
+* **Database:** MySQL 
 * **PHP Libraries:**
     * `vlucas/phpdotenv`: For environment variable management.
     * `phpmailer/phpmailer`: For sending emails.
@@ -106,7 +105,7 @@ This project is distributed under the Apache 2.0 License. See the `LICENSE` file
 
 > Une application web de gestion comptable développée dans le cadre d'un Travail de Fin d'Études (TFE). Elle permet de gérer des clients, des devis, des factures et de visualiser des données via un tableau de bord.
 
-**Démo Live :** **[tfe.acc.2026.stordeur-martin.be](https://tfe.acc.2026.stordeur-martin.be)**
+
 
 ---
 
@@ -124,8 +123,8 @@ This project is distributed under the Apache 2.0 License. See the `LICENSE` file
 ## 🛠️ Stack Technique
 
 * **Frontend :** HTML, JavaScript, TailwindCSS
-* **Backend :** PHP
-* **Base de données :** MySQL / MariaDB
+* **Backend :** PHP/NodeJS
+* **Base de données :** MySQL
 * **Librairies PHP :**
     * `vlucas/phpdotenv` : Pour la gestion des variables d'environnement.
     * `phpmailer/phpmailer` : Pour l'envoi d'e-mails.
