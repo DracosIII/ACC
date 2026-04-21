@@ -1,4 +1,5 @@
 import { Patient, BpmReading, User } from '../types';
+import { randomInt } from 'crypto';
 
 // --- DATABASE SIMULATION ---
 
@@ -184,7 +185,7 @@ export const getEmployees = async (): Promise<User[]> => {
 
 export const addPatient = async (name: string, room: string, age: number): Promise<void> => {
   const newPatient: Patient = {
-    id: Math.floor(Math.random() * 10000),
+    id: randomInt(1, 10000),
     name,
     room,
     age,
