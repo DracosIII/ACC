@@ -18,7 +18,7 @@
 </p>
 
 ### 📊 Statistiques de contribution
-[![trophies](https://github-profile-trophy.vercel.app/?username=DracosIII&theme=tokyonight&no-bg=true&column=4)](https://github.com/ryo-ma/github-profile-trophy)
+[![trophies](https://github-profile-trophy.vercel.app/?username=DracosIII&theme=tokyonight&no-bg=true&margin-w=4)](https://github.com/DracosIII)
 
 <p align="left">
   <img src="https://github-readme-stats.vercel.app/api?username=DracosIII&show_icons=true&theme=tokyonight&hide_border=true" height="150" />
