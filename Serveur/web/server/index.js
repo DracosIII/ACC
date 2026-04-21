@@ -3,6 +3,7 @@ import cors from 'cors';
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
+import rateLimit from 'express-rate-limit';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,6 +14,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+const assignmentsToggleLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 60, // max 60 toggle requests per IP per minute
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 app.use(cors());
 app.use(express.json());
@@ -401,7 +409,7 @@ app.patch('/api/patients/:id', async (req, res) => {
 });
 
 // Toggle assignment (many-to-many)
-app.post('/api/assignments/toggle', async (req, res) => {
+app.post('/api/assignments/toggle', assignmentsToggleLimiter, async (req, res) => {
   const { patientId, employeeId } = req.body ?? {};
   const pid = Number(patientId);
   const eid = Number(employeeId);
