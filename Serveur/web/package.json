@@ -15,7 +15,7 @@
     "@react-oauth/google": "^0.13.5",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
-    "dotenv": "^17.2.2",
+    "dotenv": "^17.4.2",
     "express": "^5.1.0",
     "lucide-react": "^1.8.0",
     "mysql2": "^3.22.2",
