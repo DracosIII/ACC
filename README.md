@@ -1,11 +1,6 @@
 # 🏥 Projet ACC / MediMonitor Pro
 
-![Security Status](https://img.shields.io/github/checks-status/DracosIII/ACC/main?label=security&logo=github)
-![Dependabot](https://img.shields.io/badge/dependabot-enabled-blue?logo=dependabot)
-![Build Status](https://img.shields.io/github/actions/workflow/status/DracosIII/ACC/main.yml?label=build&logo=github)
-![Last Commit](https://img.shields.io/github/last-commit/DracosIII/ACC?label=dernier%20commit&logo=git)
-![Repo Size](https://img.shields.io/github/repo-size/DracosIII/ACC?label=taille&logo=github)
-![License](https://img.shields.io/github/license/DracosIII/ACC?label=licence&color=blue)
+![Security](https://img.shields.io/github/checks-status/DracosIII/ACC/main?label=security&logo=github) ![Dependabot](https://img.shields.io/badge/dependabot-enabled-blue?logo=dependabot) ![Top Language](https://img.shields.io/github/languages/top/DracosIII/ACC?color=yellow) ![Last Commit](https://img.shields.io/github/last-commit/DracosIII/ACC?label=dernier%20commit&logo=git) ![Repo Size](https://img.shields.io/github/repo-size/DracosIII/ACC?label=taille&logo=github) ![License](https://img.shields.io/github/license/DracosIII/ACC?label=licence&color=blue)
 
 ### 🛠️ Technologies, Système & Réseau
 
