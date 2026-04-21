@@ -3,6 +3,7 @@ import cors from 'cors';
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
+import rateLimit from 'express-rate-limit';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -135,6 +136,13 @@ app.get('/api/health', async (_req, res) => {
 // -------------------------
 // Auth
 // -------------------------
+const googleAuthLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
 app.post('/api/auth/login', async (req, res) => {
   try {
     const { username, email, password, identitySha256, emailSha256, passwordSha256 } = req.body ?? {};
@@ -173,7 +181,7 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
-app.post('/api/auth/google', async (req, res) => {
+app.post('/api/auth/google', googleAuthLimiter, async (req, res) => {
   try {
     const { email, emailSha256 } = req.body ?? {};
     const identity = String(email || '').trim();
