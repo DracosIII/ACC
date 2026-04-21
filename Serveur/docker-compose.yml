@@ -1,0 +1,101 @@
+version: "3.8"
+
+services:
+  # ----------------------------------------
+  # VPN (Port 1194 UDP)
+  # ----------------------------------------
+  openvpn:
+    image: kylemanna/openvpn
+    container_name: openvpn
+    restart: always
+    ports:
+      - "1194:1194/udp"
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./openvpn-data:/etc/openvpn
+
+  # ----------------------------------------
+  # Monitoring (Port 19999)
+  # Accès : http://192.168.31.18:19999
+  # ----------------------------------------
+  netdata:
+    image: netdata/netdata
+    container_name: netdata
+    restart: always
+    hostname: ubuntu-docker-host
+    cap_add:
+      - SYS_PTRACE
+      - SYS_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    ports:
+      - "19999:19999"
+    volumes:
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./netdata-config:/etc/netdata
+      - ./netdata-lib:/var/lib/netdata
+      - ./netdata-cache:/var/cache/netdata
+
+  # ----------------------------------------
+  # Base de données
+  # ----------------------------------------
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "Martin1008"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - default-net
+
+  # ----------------------------------------
+  # Dashboard Heimdall (Port 8080)
+  # Accès : http://192.168.31.18:8080
+  # ----------------------------------------
+  heimdall:
+    image: lscr.io/linuxserver/heimdall
+    container_name: heimdall
+    restart: always
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: "Europe/Brussels"
+    ports:
+      - "8080:80"
+    volumes:
+      - ./heimdall-config:/config
+    networks:
+      - default-net
+    depends_on:
+      - mysql
+
+  # ----------------------------------------
+  # PhpMyAdmin (Port 8081)
+  # Accès : http://192.168.31.18:8081
+  # ----------------------------------------
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    ports:
+      - "8081:80"
+    networks:
+      - default-net
+    depends_on:
+      - mysql
+
+networks:
+  default-net:
+    driver: bridge
