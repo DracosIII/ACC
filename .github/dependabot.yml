@@ -1,18 +1,20 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
-
 version: 2
 updates:
-  # Surveille les dépendances Python (ton code ACC)
-  - package-ecosystem: "pip"
-    directory: "/"
+  # Surveiller les vulnérabilités et mises à jour npm (Node.js) dans le dossier web
+  - package-ecosystem: "npm"
+    directory: "/Serveur/web"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+
+  # Surveiller les mises à jour des images de base Docker
+  - package-ecosystem: "docker"
+    directory: "/Serveur/web"
     schedule:
       interval: "weekly"
 
-  # Surveille les images Docker (tes containers DNS, Nginx, etc.)
-  - package-ecosystem: "docker"
+  # Surveiller les versions des GitHub Actions utilisées
+  - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
