@@ -1,203 +1,107 @@
-## [EN]
-# Accounting Management Application (TFE)
+# 🏥 Projet ACC / MediMonitor Pro
 
-> An accounting management web application developed as a final year project (TFE). It allows users to manage clients, quotes, invoices, and visualize data through a dashboard.
-
-
----
-
-## ✨ Features
-
-* **User Management:** Secure user registration and login system.
-* **Dashboard:** Interactive dashboard with key metrics and charts (powered by Chart.js).
-* **Client Management:** CRUD operations for clients.
-* **Quote & Invoice Management:** Create, read, update, and delete quotes and invoices.
-* **PDF Generation:** Generate PDF documents for invoices and quotes using Dompdf.
-* **Email Functionality:** Send documents and notifications via email using PHPMailer.
+<div align="center">
+  <p><strong>[ <a href="#en-english">EN</a> | <a href="#fr-français">FR</a> ]</strong></p>
+</div>
 
 ---
 
-## 🛠️ Tech Stack
+## [EN] English
 
-* **Frontend:** HTML, JavaScript, TailwindCSS
-* **Backend:** PHP / NodeJS
-* **Database:** MySQL 
-* **PHP Libraries:**
-    * `vlucas/phpdotenv`: For environment variable management.
-    * `phpmailer/phpmailer`: For sending emails.
-    * `dompdf/dompdf`: For generating PDFs from HTML.
-* **JS Libraries:**
-    * `chart.js`: For creating interactive charts.
-    * `apexcharts`: Another charting library available.
+> **MediMonitor Pro (ACC Project)** is a comprehensive IoT health monitoring system designed for healthcare facilities. It encompasses a React-based monitoring dashboard, an Express/MySQL backend for data management, and a robust self-hosted infrastructure deployable via Docker (Netdata, Heimdall, Wireguard, Home Assistant, etc.).
+
+### ✨ Key Features
+
+**1. MediMonitor Dashboard (Web Application)**
+*   **Real-time Monitoring:** Track patients' heart rates (BPM), fall detections (`chute`), and emergency physical button presses (`bnt`).
+*   **Role-Based Access Control:** Configurable user roles (Super Admin, Admin, Caregiver) with secure authentication (bcrypt + Azure MSAL/Google OAuth support).
+*   **Patient & Employee Management:** CRUD operations for patients and hospital staff, with assignment logic to link specific caregivers to specific patients.
+*   **Interactive Visualizations:** Historical vital sign charts using Recharts.
+*   **Location Tracking:** Integrated with Google Maps for patient tracking.
+
+**2. Infrastructure & Server Stack**
+*   **Server Environment:** Production-ready `docker-compose` setup featuring MySQL, PhpMyAdmin, Netdata (for host monitoring), and Heimdall (dashboard).
+*   **Raspberry Pi Gateway:** Advanced networking configuration with Technitium DNS, Nginx Proxy Manager, NTopNG (network monitoring), Wireguard VPN, and Home Assistant for local IoT integration.
+
+### 🛠️ Tech Stack
+
+*   **Frontend:** React 19, Vite, Tailwind CSS, Recharts, Lucide React.
+*   **Backend:** Node.js (Express), MySQL 8.
+*   **Auth & Security:** bcryptjs, Microsoft MSAL, Google OAuth.
+*   **Infrastructure & DevOps:** Docker, Docker Compose, Nginx Proxy Manager, Wireguard, Netdata.
+
+### 🚀 Getting Started
+
+**Starting the Infrastructure:**
+1.  Clone this repository to your host server or Raspberry Pi.
+2.  To spin up the databases and monitoring tools, navigate to `Serveur/web/` and run:
+    ```sh
+    docker-compose up -d
+    ```
+3.  *(Optional)* For the Raspberry Pi VPN/DNS gateway stack, navigate to `Raspberry/` and run `docker-compose up -d`.
+
+**Starting the Application:**
+1.  Navigate to the web app directory: `cd Serveur/web`.
+2.  Copy `.env.example` to `.env` and fill in your DB credentials and API keys.
+3.  Import the database schema and seed data located at `server/db/schema.sql` into MySQL.
+4.  Install dependencies: `npm install`.
+5.  Start the development server (Frontend + Backend concurrently): `npm run dev`.
+6.  Access the web dashboard in your browser.
 
 ---
 
-## 🚀 Getting Started
+## [FR] Français
 
-To set up a local copy of this project, you will need a local server environment like XAMPP, WAMP, or MAMP.
+> **MediMonitor Pro (Projet ACC)** est un système IoT complet de télésurveillance médicale conçu pour les établissements de santé. Il comprend un tableau de bord React, une API Express/MySQL pour la gestion des données, et une infrastructure auto-hébergée robuste déployable via Docker (Netdata, Heimdall, Wireguard, Home Assistant, etc.).
 
-### Prerequisites
+### ✨ Fonctionnalités Principales
 
-* A PHP server environment (e.g., Apache)
-* PHP 8.0 or higher
-* Composer (for PHP dependencies)
-* Node.js and npm (for frontend dependencies)
-* A MySQL/MariaDB database server
+**1. Dashboard MediMonitor (Application Web)**
+*   **Surveillance en temps réel :** Suivi du pouls des patients (BPM), détection de chutes (`chute`), et activation des boutons d'appel d'urgence (`bnt`).
+*   **Contrôle d'accès par rôle (RBAC) :** Rôles configurables (Super Admin, Admin, Personnel soignant) avec authentification sécurisée (bcrypt + support Azure MSAL/Google OAuth).
+*   **Gestion des patients et employés :** Opérations CRUD pour gérer le personnel et les patients, avec un système d'assignation pour lier un soignant à ses patients.
+*   **Visualisations interactives :** Graphiques de l'historique des signes vitaux avec Recharts.
+*   **Suivi géographique :** Intégration Google Maps pour le suivi d'adresses ou de positions.
 
-### Installation
+**2. Infrastructure et Stack Serveur**
+*   **Environnement Serveur :** Configuration `docker-compose` prête pour la production avec MySQL, PhpMyAdmin, Netdata (surveillance du serveur) et Heimdall (portail d'accueil).
+*   **Passerelle Raspberry Pi :** Configuration réseau avancée comprenant Technitium DNS, Nginx Proxy Manager, NTopNG (surveillance réseau), Wireguard VPN et Home Assistant pour l'intégration IoT locale.
 
-1.  **Clone the repository:**
+### 🛠️ Stack Technique
+
+*   **Frontend :** React 19, Vite, Tailwind CSS, Recharts, Lucide React.
+*   **Backend :** Node.js (Express), MySQL 8.
+*   **Auth & Sécurité :** bcryptjs, Microsoft MSAL, Google OAuth.
+*   **Infrastructure & DevOps :** Docker, Docker Compose, Nginx Proxy Manager, Wireguard, Netdata.
+
+### 🚀 Démarrage rapide
+
+**Démarrer l'infrastructure :**
+1.  Clonez ce dépôt sur votre serveur hôte ou votre Raspberry Pi.
+2.  Pour lancer les bases de données et outils de surveillance, naviguez vers `Serveur/web/` et exécutez :
     ```sh
-    git clone [https://github.com/DracosIII/ACC.git](https://github.com/DracosIII/ACC.git)
+    docker-compose up -d
     ```
+3.  *(Optionnel)* Pour la passerelle Raspberry Pi (VPN, DNS), naviguez vers `Raspberry/` et lancez `docker-compose up -d`.
 
-2.  **Navigate to the project directory:**
-    ```sh
-    cd ACC
-    ```
-
-3.  **Install PHP dependencies:**
-    ```sh
-    composer install
-    ```
-
-4.  **Install frontend dependencies:**
-    ```sh
-    npm install
-    ```
-
-5.  **Set up the database:**
-    * Create a new database in your MySQL/MariaDB server (e.g., via phpMyAdmin).
-    * Import the `comptabilite.sql` file into your newly created database.
-
-6.  **Configure environment variables:**
-    * Rename the `.env.example` file to `.env`.
-    * Update the `.env` file with your database credentials (DB_HOST, DB_NAME, DB_USER, DB_PASS).
-
-7.  **Build the CSS:**
-    The project uses TailwindCSS. To compile the CSS file, run the following command:
-    ```sh
-    npm run build-css
-    ```
-    *Note: During development, you can use `npm run watch-css` to automatically recompile the CSS on changes.*
-
-8.  **Run the project:**
-    Place the project folder in your local server's web directory (e.g., `htdocs` for XAMPP) and access it via your browser (e.g., `http://localhost/ACC`).
+**Démarrer l'Application :**
+1.  Naviguez vers le dossier de l'application web : `cd Serveur/web`.
+2.  Copiez `.env.example` vers `.env` et remplissez vos accès DB et clés API.
+3.  Importez le schéma de base de données situé dans `server/db/schema.sql` dans votre MySQL.
+4.  Installez les dépendances : `npm install`.
+5.  Lancez l'environnement de développement (Frontend + Backend en simultané) : `npm run dev`.
+6.  Accédez à l'application web via votre navigateur.
 
 ---
 
-## 📜 License
+## 📜 Licence / License
 
-This project is distributed under the Apache 2.0 License. See the `LICENSE` file for more information.
+Ce projet est distribué sous la **Licence Apache 2.0**. Consultez le fichier `LICENSE` pour plus d'informations. / *This project is distributed under the Apache 2.0 License. See the `LICENSE` file for more information.*
 
 ---
 
-## 👤 Author
+## 👤 Auteur / Author
 
 **Martin Stordeur**
-
-* **Website:** [stordeur-martin.be](https://stordeur-martin.be)
-* **GitHub:** [@DracosIII](https://github.com/DracosIII)
-
-
-## [FR] 
-# Application de Gestion Comptable (TFE)
-
-> Une application web de gestion comptable développée dans le cadre d'un Travail de Fin d'Études (TFE). Elle permet de gérer des clients, des devis, des factures et de visualiser des données via un tableau de bord.
-
-
-
----
-
-## ✨ Fonctionnalités
-
-* **Gestion des utilisateurs :** Système d'inscription et de connexion sécurisé.
-* **Tableau de bord :** Dashboard interactif avec graphiques et indicateurs clés (propulsé par Chart.js).
-* **Gestion des clients :** Opérations CRUD pour les clients.
-* **Gestion des devis et factures :** Créer, lire, mettre à jour et supprimer des devis et factures.
-* **Génération de PDF :** Générer des documents PDF pour les factures et devis avec Dompdf.
-* **Envoi d'e-mails :** Envoyer des documents et notifications par e-mail avec PHPMailer.
-
----
-
-## 🛠️ Stack Technique
-
-* **Frontend :** HTML, JavaScript, TailwindCSS
-* **Backend :** PHP/NodeJS
-* **Base de données :** MySQL
-* **Librairies PHP :**
-    * `vlucas/phpdotenv` : Pour la gestion des variables d'environnement.
-    * `phpmailer/phpmailer` : Pour l'envoi d'e-mails.
-    * `dompdf/dompdf` : Pour la génération de PDF à partir de HTML.
-* **Librairies JS :**
-    * `chart.js` : Pour créer des graphiques interactifs.
-    * `apexcharts` : Autre librairie de graphiques disponible.
-
----
-
-## 🚀 Démarrage
-
-Pour installer une copie locale de ce projet, vous aurez besoin d'un environnement de serveur local comme XAMPP, WAMP ou MAMP.
-
-### Prérequis
-
-* Un environnement de serveur PHP (ex: Apache)
-* PHP 8.0 ou supérieur
-* Composer (pour les dépendances PHP)
-* Node.js et npm (pour les dépendances frontend)
-* Un serveur de base de données MySQL/MariaDB
-
-### Installation
-
-1.  **Clonez le dépôt :**
-    ```sh
-    git clone [https://github.com/DracosIII/ACC.git](https://github.com/DracosIII/ACC.git)
-    ```
-
-2.  **Naviguez vers le dossier du projet :**
-    ```sh
-    cd ACC
-    ```
-
-3.  **Installez les dépendances PHP :**
-    ```sh
-    composer install
-    ```
-
-4.  **Installez les dépendances frontend :**
-    ```sh
-    npm install
-    ```
-
-5.  **Configurez la base de données :**
-    * Créez une nouvelle base de données dans votre serveur MySQL/MariaDB (ex: via phpMyAdmin).
-    * Importez le fichier `comptabilite.sql` dans la base de données que vous venez de créer.
-
-6.  **Configurez les variables d'environnement :**
-    * Renommez le fichier `.env.example` en `.env`.
-    * Mettez à jour le fichier `.env` avec vos informations de connexion à la base de données (DB_HOST, DB_NAME, DB_USER, DB_PASS).
-
-7.  **Compilez le CSS :**
-    Le projet utilise TailwindCSS. Pour compiler le fichier CSS, exécutez la commande suivante :
-    ```sh
-    npm run build-css
-    ```
-    *Note : Pendant le développement, vous pouvez utiliser `npm run watch-css` pour recompiler automatiquement le CSS lors de chaque modification.*
-
-8.  **Lancez le projet :**
-    Placez le dossier du projet dans le répertoire web de votre serveur local (ex: `htdocs` pour XAMPP) et accédez-y via votre navigateur (ex: `http://localhost/ACC`).
-
----
-
-## 📜 Licence
-
-Ce projet est distribué sous la licence Apache 2.0. Consultez le fichier `LICENSE` pour plus d'informations.
-
----
-
-## 👤 Auteur
-
-**Martin Stordeur**
-
-* **Site web :** [stordeur-martin.be](https://stordeur-martin.be)
-* **GitHub :** [@DracosIII](https://github.com/DracosIII)
+*   **Website:** [stordeur-martin.be](https://stordeur-martin.be)
+*   **GitHub:** [@DracosIII](https://github.com/DracosIII)
