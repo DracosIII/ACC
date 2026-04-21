@@ -11,6 +11,9 @@
 **Développement & Bases de données**
 > ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white) ![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-6C78AF?style=flat&logo=phpmyadmin&logoColor=white) ![Azure](https://img.shields.io/badge/Azure-0089D6?style=flat&logo=microsoftazure&logoColor=white) ![Google Maps](https://img.shields.io/badge/Maps-4285F4?style=flat&logo=googlemaps&logoColor=white) ![Raspberry_Pi](https://img.shields.io/badge/Raspberry_Pi-C51A4A?style=flat&logo=raspberrypi&logoColor=white)
 
+**Supervision & Sécurité**
+> ![Wireguard](https://img.shields.io/badge/Wireguard-881717?style=flat&logo=wireguard&logoColor=white) ![Nginx](https://img.shields.io/badge/Nginx-009639?style=flat&logo=nginx&logoColor=white) ![Netdata](https://img.shields.io/badge/Netdata-00A9E0?style=flat&logo=netdata&logoColor=white) ![Home Assistant](https://img.shields.io/badge/Home_Assistant-41BDF5?style=flat&logo=home-assistant&logoColor=white)
+
 ### 📊 Statistiques de contribution
 ![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=DracosIII&theme=tokyonight&hide_border=true)
 
