@@ -3,6 +3,7 @@ import cors from 'cors';
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
+import rateLimit from 'express-rate-limit';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,6 +14,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+const employeesRateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false
+});
 
 app.use(cors());
 app.use(express.json());
@@ -282,7 +290,7 @@ app.patch('/api/users/:id', async (req, res) => {
 // -------------------------
 // Admin - employees
 // -------------------------
-app.get('/api/employees', async (req, res) => {
+app.get('/api/employees', employeesRateLimiter, async (req, res) => {
   const targetSiteId = req.query.siteId ? Number(req.query.siteId) : null;
   if (targetSiteId) {
     const [rows] = await pool.query(
