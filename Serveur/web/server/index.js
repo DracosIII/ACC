@@ -3,6 +3,7 @@ import cors from 'cors';
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
+import rateLimit from 'express-rate-limit';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,6 +14,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+const spaFallbackLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // max 100 requests per IP per window
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 app.use(cors());
 app.use(express.json());
@@ -566,7 +574,7 @@ app.get('/api/dashboard', async (req, res) => {
 });
 
 // Fallback for SPA routing - catch all non-API routes
-app.use((req, res) => {
+app.use(spaFallbackLimiter, (req, res) => {
   if (req.path.startsWith('/api/')) return;
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
