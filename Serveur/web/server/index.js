@@ -3,6 +3,7 @@ import cors from 'cors';
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
+import rateLimit from 'express-rate-limit';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,6 +14,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+const sitesWriteLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 create-site requests per window
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 app.use(cors());
 app.use(express.json());
@@ -585,7 +593,7 @@ app.get('/api/sites', async (req, res) => {
   res.json(rows);
 });
 
-app.post('/api/sites', async (req, res) => {
+app.post('/api/sites', sitesWriteLimiter, async (req, res) => {
   const { nom, adresse } = req.body ?? {};
   if (!nom) return res.status(400).json({ error: 'nom requis' });
   try {
