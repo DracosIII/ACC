@@ -3,6 +3,7 @@ import cors from 'cors';
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
+import rateLimit from 'express-rate-limit';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,6 +14,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+const createPatientLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 app.use(cors());
 app.use(express.json());
@@ -334,7 +342,7 @@ app.delete('/api/employees/:id', async (req, res) => {
 // -------------------------
 // Admin - patients
 // -------------------------
-app.post('/api/patients', async (req, res) => {
+app.post('/api/patients', createPatientLimiter, async (req, res) => {
   const { name, room, age, site_id } = req.body ?? {};
   if (!name || !room || !Number.isFinite(Number(age))) {
     return res.status(400).json({ error: 'name, room, age requis' });
