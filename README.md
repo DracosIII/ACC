@@ -1,6 +1,25 @@
 # 🏥 Projet ACC / MediMonitor Pro
+
 ![Security Status](https://img.shields.io/github/checks-status/DracosIII/ACC/main?label=security&logo=github)
 ![Dependabot](https://img.shields.io/badge/dependabot-enabled-blue?logo=dependabot)
+
+### 🛠️ Technologies & Réseau
+<p align="left">
+  <img src="https://img.shields.io/badge/cisco-%23049fd9.svg?style=for-the-badge&logo=cisco&logoColor=white" />
+  <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" />
+  <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" />
+  <img src="https://img.shields.io/badge/-RaspberryPi-C51A4A?style=for-the-badge&logo=Raspberry-Pi" />
+  <img src="https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white" />
+</p>
+
+### 📊 Statistiques de contribution
+[![trophies](https://github-profile-trophy.vercel.app/?username=DracosIII&theme=tokyonight&no-bg=true)](https://github.com/ryo-ma/github-profile-trophy)
+
+<p align="left">
+  <img src="https://github-readme-stats.vercel.app/api?username=DracosIII&show_icons=true&theme=tokyonight&hide_border=true" height="150" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=DracosIII&layout=compact&theme=tokyonight&hide_border=true" height="150" />
+</p>
+
 <div align="center">
   <p><strong>[ <a href="#en-english">EN</a> | <a href="#fr-français">FR</a> ]</strong></p>
 </div>
