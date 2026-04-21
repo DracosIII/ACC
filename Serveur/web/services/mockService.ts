@@ -83,7 +83,7 @@ const initHistory = () => {
       const now = Date.now();
       for (let i = 20; i > 0; i--) {
         p.bpmHistory.push({
-          id: Math.random(),
+          id: randomInt(0, Number.MAX_SAFE_INTEGER),
           patient_id: p.id,
           valeur: 60 + Math.floor(Math.random() * 40),
           date_mesure: new Date(now - i * 60000).toISOString()
@@ -185,7 +185,7 @@ export const getEmployees = async (): Promise<User[]> => {
 
 export const addPatient = async (name: string, room: string, age: number): Promise<void> => {
   const newPatient: Patient = {
-    id: randomInt(1, 10000),
+    id: randomInt(10000),
     name,
     room,
     age,
@@ -197,7 +197,7 @@ export const addPatient = async (name: string, room: string, age: number): Promi
   const now = Date.now();
   for (let i = 20; i > 0; i--) {
       newPatient.bpmHistory.push({
-        id: Math.random(),
+        id: randomInt(0, Number.MAX_SAFE_INTEGER),
         patient_id: newPatient.id,
         valeur: 70,
         date_mesure: new Date(now - i * 60000).toISOString()
@@ -212,7 +212,7 @@ export const removePatient = async (id: number): Promise<void> => {
 
 export const addEmployee = async (username: string, name: string): Promise<void> => {
   MOCK_USERS.push({
-    id: Math.floor(Math.random() * 10000),
+    id: randomInt(10000),
     username,
     name,
     role: 'employe'
