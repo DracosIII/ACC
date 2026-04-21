@@ -38,7 +38,7 @@ jobs:
             type=sha
 
       - name: 🏗️ Construction et Push de l'image Docker
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7
         with:
           context: ./Serveur/web
           push: true
