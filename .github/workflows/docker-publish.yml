@@ -1,0 +1,46 @@
+name: Build and Publish Docker Image to GitHub Packages 📦
+
+on:
+  push:
+    branches: [ "main" ] # Déclenche l'action à chaque push sur la branche main
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    
+    # Autorisations nécessaires pour lire le dépôt et écrire des packages
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: 📥 Checkout du code source
+        uses: actions/checkout@v4
+
+      - name: 🔑 Connexion à GitHub Container Registry (ghcr.io)
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🏷️ Extraction des métadonnées (tags, labels)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha
+
+      - name: 🏗️ Construction et Push de l'image Docker
+        uses: docker/build-push-action@v5
+        with:
+          context: ./Serveur/web
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
