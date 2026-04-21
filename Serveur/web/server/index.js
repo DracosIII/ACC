@@ -3,7 +3,7 @@ import cors from 'cors';
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
-import { createHash } from 'crypto';
+
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -49,14 +49,14 @@ function toIso(dt) {
   return Number.isNaN(d.getTime()) ? null : d.toISOString();
 }
 
-function sha256Hex(value) {
-  return createHash('sha256').update(String(value).trim().toLowerCase(), 'utf8').digest('hex');
+function normalizeLowerTrim(value) {
+  return String(value || '').trim().toLowerCase();
 }
 
 async function verifyPassword(storedHash, rawPassword, passwordSha256) {
   const normalizedStored = String(storedHash || '');
-  const clientSha = String(passwordSha256 || '').trim().toLowerCase();
-  const fallbackSha = rawPassword ? sha256Hex(rawPassword) : '';
+  const clientSha = normalizeLowerTrim(passwordSha256);
+  const fallbackSha = normalizeLowerTrim(rawPassword);
 
   if (!normalizedStored) return false;
 
@@ -302,7 +302,7 @@ app.post('/api/employees', async (req, res) => {
   const { email, nom, prenom, telephone, adresse, password, passwordSha256, role, site_id } = req.body ?? {};
   if (!email || !nom || !prenom || (!password && !passwordSha256)) return res.status(400).json({ error: 'email, nom, prenom et password requis' });
 
-  const basePassword = passwordSha256 || sha256Hex(password);
+  const basePassword = passwordSha256 || String(password).trim();
   const password_hash = await bcrypt.hash(basePassword, 10);
   let dbRole = role || 'employé';
   if (dbRole === 'employe') dbRole = 'employé';
