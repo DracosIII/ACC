@@ -26,6 +26,13 @@ const authLimiter = rateLimit({
 app.use(cors());
 app.use(express.json());
 
+const healthLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 60, // limit each IP to 60 requests per window for health checks
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
 // Serve static files from dist folder
 app.use(express.static(path.join(__dirname, '../dist'), { dotfiles: 'allow' }));
 
@@ -132,7 +139,7 @@ function normalizePatient(row, bpmHistory = [], assignedEmployeeIds = []) {
   };
 }
 
-app.get('/api/health', async (_req, res) => {
+app.get('/api/health', healthLimiter, async (_req, res) => {
   try {
     const [rows] = await pool.query('SELECT 1 AS ok');
     res.json({ ok: true, db: rows?.[0]?.ok === 1 });
