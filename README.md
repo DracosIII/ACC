@@ -18,7 +18,7 @@
 </p>
 
 ### 📊 Statistiques de contribution
-[![trophies](https://github-profile-trophy.vercel.app/?username=DracosIII&theme=tokyonight&no-bg=true&margin-w=4)](https://github.com/DracosIII)
+![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=DracosIII&theme=tokyonight&hide_border=true)
 
 <p align="left">
   <img src="https://github-readme-stats.vercel.app/api?username=DracosIII&show_icons=true&theme=tokyonight&hide_border=true" height="150" />
