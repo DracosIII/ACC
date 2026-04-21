@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediMonitor Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              hub: {
+                bg: '#0b0e14',
+                bgEnd: '#05070a',
+                glass: 'rgba(11, 14, 20, 0.7)',
+                accent: '#00d4ff',
+                alert: '#ff0f0f',
+              }
+            },
+            animation: {
+              'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'flash-red': 'flashRed 1s infinite',
+            },
+            keyframes: {
+              flashRed: {
+                '0%, 100%': { boxShadow: '0 0 0px rgba(255, 15, 15, 0)' },
+                '50%': { boxShadow: '0 0 20px rgba(255, 15, 15, 0.8)', borderColor: 'rgba(255, 15, 15, 0.8)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background: linear-gradient(135deg, #0b0e14 0%, #05070a 100%);
+        color: #e2e8f0;
+        min-height: 100vh;
+      }
+      .glass-panel {
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        box-shadow: 0 0 15px rgba(0, 212, 255, 0.05);
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        backface-visibility: hidden;
+      }
+      .neon-text {
+        text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+      }
+      .neon-border {
+         box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "recharts": "https://esm.sh/recharts@^3.7.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
