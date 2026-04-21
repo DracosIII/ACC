@@ -3,6 +3,7 @@ import cors from 'cors';
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
+import rateLimit from 'express-rate-limit';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,6 +14,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+const patientWriteLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 30, // limit each IP to 30 write requests per minute on protected routes
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 app.use(cors());
 app.use(express.json());
@@ -386,7 +394,7 @@ app.delete('/api/patients/:id', async (req, res) => {
   res.json({ ok: true });
 });
 
-app.patch('/api/patients/:id', async (req, res) => {
+app.patch('/api/patients/:id', patientWriteLimiter, async (req, res) => {
   const id = Number(req.params.id);
   if (!Number.isFinite(id)) return res.status(400).json({ error: 'id invalide' });
   const { name, room, age } = req.body ?? {};
