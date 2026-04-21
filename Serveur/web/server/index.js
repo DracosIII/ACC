@@ -3,6 +3,7 @@ import cors from 'cors';
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
+import rateLimit from 'express-rate-limit';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,6 +14,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 20, // limit each IP to 20 auth requests per window
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Trop de tentatives, veuillez réessayer plus tard.' },
+});
 
 app.use(cors());
 app.use(express.json());
@@ -135,7 +144,7 @@ app.get('/api/health', async (_req, res) => {
 // -------------------------
 // Auth
 // -------------------------
-app.post('/api/auth/login', async (req, res) => {
+app.post('/api/auth/login', authLimiter, async (req, res) => {
   try {
     const { username, email, password, identitySha256, emailSha256, passwordSha256 } = req.body ?? {};
     const identity = String(email || username || '').trim();
@@ -173,7 +182,7 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
-app.post('/api/auth/google', async (req, res) => {
+app.post('/api/auth/google', authLimiter, async (req, res) => {
   try {
     const { email, emailSha256 } = req.body ?? {};
     const identity = String(email || '').trim();
