@@ -2,20 +2,13 @@
 
 ![Security Status](https://img.shields.io/github/checks-status/DracosIII/ACC/main?label=security&logo=github)
 ![Dependabot](https://img.shields.io/badge/dependabot-enabled-blue?logo=dependabot)
-
 ### 🛠️ Technologies, Système & Réseau
-<p align="left">
-  <img src="https://img.shields.io/badge/cisco-%23049fd9.svg?style=for-the-badge&logo=cisco&logoColor=white" />
-  <img src="https://img.shields.io/badge/Proxmox-E74C3C?style=for-the-badge&logo=Proxmox&logoColor=white" />
-  <img src="https://img.shields.io/badge/Ubuntu_Server-E95420?style=for-the-badge&logo=ubuntu&logoColor=white" />
-  <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" />
-  <br>
-  <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" />
-  <img src="https://img.shields.io/badge/microsoft%20azure-0089D6?style=for-the-badge&logo=microsoft-azure&logoColor=white" />
-  <img src="https://img.shields.io/badge/Google_Maps-4285F4?style=for-the-badge&logo=google-maps&logoColor=white" />
-  <img src="https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white" />
-  <img src="https://img.shields.io/badge/-RaspberryPi-C51A4A?style=for-the-badge&logo=Raspberry-Pi" />
-</p>
+
+**Infrastructure & Réseau**
+> ![Cisco](https://img.shields.io/badge/Cisco-049fd9?style=flat&logo=cisco&logoColor=white) ![Proxmox](https://img.shields.io/badge/Proxmox-E74C3C?style=flat&logo=proxmox&logoColor=white) ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=flat&logo=ubuntu&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
+
+**Développement & Cloud**
+> ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) ![Azure](https://img.shields.io/badge/Azure-0089D6?style=flat&logo=microsoftazure&logoColor=white) ![Google Maps](https://img.shields.io/badge/Maps-4285F4?style=flat&logo=googlemaps&logoColor=white) ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white) ![Raspberry Pi](https://img.shields.io/badge/Raspberry_Pi-C51A4A?style=flat&logo=raspberrypi&logoColor=white)
 
 ### 📊 Statistiques de contribution
 ![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=DracosIII&theme=tokyonight&hide_border=true)
