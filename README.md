@@ -1,5 +1,6 @@
 # 🏥 Projet ACC / MediMonitor Pro
-
+![Security Status](https://img.shields.io/github/checks-status/DracosIII/ACC/main?label=security&logo=github)
+![Dependabot](https://img.shields.io/badge/dependabot-enabled-blue?logo=dependabot)
 <div align="center">
   <p><strong>[ <a href="#en-english">EN</a> | <a href="#fr-français">FR</a> ]</strong></p>
 </div>
