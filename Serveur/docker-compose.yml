@@ -2,20 +2,6 @@ version: "3.8"
 
 services:
   # ----------------------------------------
-  # VPN (Port 1194 UDP)
-  # ----------------------------------------
-  openvpn:
-    image: kylemanna/openvpn
-    container_name: openvpn
-    restart: always
-    ports:
-      - "1194:1194/udp"
-    cap_add:
-      - NET_ADMIN
-    volumes:
-      - ./openvpn-data:/etc/openvpn
-
-  # ----------------------------------------
   # Monitoring (Port 19999)
   # Accès : http://192.168.31.18:19999
   # ----------------------------------------
@@ -49,7 +35,7 @@ services:
     container_name: mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: "Martin1008"
+      MYSQL_ROOT_PASSWORD: 
     volumes:
       - ./mysql-data:/var/lib/mysql
     ports:
