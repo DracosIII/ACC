@@ -3,6 +3,7 @@ import cors from 'cors';
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
+import rateLimit from 'express-rate-limit';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,6 +14,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+const adminMutationLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 30, // max 30 destructive admin requests per IP per window
+  standardHeaders: true,
+  legacyHeaders: false
+});
 
 app.use(cors());
 app.use(express.json());
@@ -596,7 +604,7 @@ app.post('/api/sites', async (req, res) => {
   }
 });
 
-app.delete('/api/sites/:id', async (req, res) => {
+app.delete('/api/sites/:id', adminMutationLimiter, async (req, res) => {
   try {
     await pool.query("DELETE FROM sites WHERE id = :id", { id: req.params.id });
     res.json({ success: true });
