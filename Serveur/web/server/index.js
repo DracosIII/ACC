@@ -3,6 +3,7 @@ import cors from 'cors';
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
+import rateLimit from 'express-rate-limit';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,6 +14,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+const patientMutationLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 50,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 app.use(cors());
 app.use(express.json());
@@ -379,7 +387,7 @@ app.post('/api/patients', async (req, res) => {
   }
 });
 
-app.delete('/api/patients/:id', async (req, res) => {
+app.delete('/api/patients/:id', patientMutationLimiter, async (req, res) => {
   const id = Number(req.params.id);
   if (!Number.isFinite(id)) return res.status(400).json({ error: 'id invalide' });
   await pool.query('DELETE FROM users WHERE id = :id AND role = "patient"', { id });
