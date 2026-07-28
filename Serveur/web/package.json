@@ -19,7 +19,7 @@
     "express": "^5.1.0",
     "lucide-react": "^1.27.0",
     "mysql2": "^3.23.2",
-    "react": "^19.2.6",
+    "react": "^19.2.8",
     "react-dom": "^19.2.7",
     "recharts": "^3.10.0",
     "express-rate-limit": "^8.6.1"
